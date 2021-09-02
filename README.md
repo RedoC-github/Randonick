@@ -1,9 +1,11 @@
 # Randonick
-A random-based nickname generator.
+**Randonick** - A random-based nickname generator.
 
-In version 0.0.1(alpha), you have to run in like this:
 
-1. Firstly, clone this repository.
+
+In version 0.0.1(alpha), you have to run it like this:
+
+1. Clone this repository.
 ```
 $ git clone https://github.com/yuanie324/Randonick.git
 ```
@@ -15,7 +17,7 @@ $ cd Randonick
 
 3. Run.
 ```
-$ gcc randonick.cpp
+$ ./randonick
 ```
 ___
 ## TODO
