@@ -1,5 +1,5 @@
 # Randonick
-**Randonick** - A random-based nickname generator.
+**Randonick** - A random-based nickname generator by yuanie324.
 
 
 
