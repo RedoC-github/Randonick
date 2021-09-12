@@ -1,5 +1,5 @@
 # Randonick
-**Randonick** - A random-based nickname generator by yuanie324.
+**Randonick** - A random-based nickname generator by jhhan128.
 
 
 
@@ -7,7 +7,7 @@ In version 0.0.1(alpha), you have to run it like this:
 
 1. Clone this repository.
 ```
-$ git clone https://github.com/yuanie324/Randonick.git
+$ git clone https://github.com/jhhan128/Randonick.git
 ```
 
 2. Go to cloned folder.

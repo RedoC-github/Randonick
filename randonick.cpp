@@ -1,4 +1,4 @@
-// 2021 yuanie324. All rights reserved.
+// 2021 jhhan128 All rights reserved.
 
 #include <iostream>
 #include <random>
