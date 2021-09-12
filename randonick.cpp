@@ -81,6 +81,10 @@ int main(int argc, const char **argv) {
                 flag = true;
                 break;
 
+            case 324:
+                std::cout << "\nFor you\n\n";
+                return 0;
+
             default:
                 std::cout << "\nError: Undefined option.\n\n";
         }
