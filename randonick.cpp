@@ -104,11 +104,11 @@ std::string generateNick(const int opt, const int al, const int nu) {
         if (i % 2 == firstAlpha) {
             char nw = getRandom::getRandomCons();
             while (alpha.back() == nw) nw = getRandom::getRandomCons();
-            alpha.push_back(getRandom::getRandomCons());
+            alpha.push_back(nw);
         } else {
             char nw = getRandom::getRandomVowel();
             while (alpha.back() == nw) nw = getRandom::getRandomVowel();
-            alpha.push_back(getRandom::getRandomVowel());
+            alpha.push_back(nw);
         }
     }
 

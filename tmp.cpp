@@ -1,0 +1,2 @@
+
+            char nw = getRandom::getRandomCons();
