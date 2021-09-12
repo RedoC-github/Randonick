@@ -1,12 +1,45 @@
-// 2021 jhhan128 All rights reserved.
+// 2021 jhhan128. All rights reserved.
 
 #include <iostream>
 #include <random>
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <limits>
 
-unsigned int getRandomNumber(void);
+namespace getRandom {
+    unsigned int getRandomNumber(void) {
+        std::random_device random;
+        std::mt19937 engine(random());
+        std::uniform_int_distribution<unsigned int> __rand(0, std::numeric_limits<unsigned int>::max());
+        return (unsigned int)__rand(engine);
+    }
+
+    char getRandomCons(void) {
+        std::vector<char> cons;
+
+        for (char c = 'b'; c <= 'z'; c++) {
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') continue;
+            else cons.push_back(c);
+        }
+
+        std::random_shuffle(cons.begin(), cons.end());
+        return cons[getRandomNumber() % (unsigned int)cons.size()];
+    }
+
+    char getRandomVowel(void) {
+        std::vector<char> vowel = { 'a', 'e', 'i', 'o', 'u', 'y' };
+        std::random_shuffle(vowel.begin(), vowel.end());
+        return vowel[getRandomNumber() % (unsigned int)vowel.size()];
+    }
+
+    char getRandomDigit(void) {
+        std::vector<char> dig = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        std::random_shuffle(dig.begin(), dig.end());
+        return dig[getRandomNumber() % (unsigned int)dig.size()];
+    }
+};
+
 std::string generateNick(const int, const int, const int);
 
 int main(int argc, const char **argv) {
@@ -29,27 +62,22 @@ int main(int argc, const char **argv) {
             case 1:
                 std::cout << "Enter the number of alphabets >> ";
                 std::cin >> alphabetLength;
-
                 std::cout << "Enter the number of numbers >> ";
                 std::cin >> numberLength;
-
                 flag = true;
                 break;
 
             case 2:
                 std::cout << "Enter the number of numbers >> ";
                 std::cin >> numberLength;
-
                 std::cout << "Enter the number of alphabets >> ";
                 std::cin >> alphabetLength;
-
                 flag = true;
                 break;
 
             case 3:
                 std::cout << "Enter the number of alphabets >> ";
                 std::cin >> alphabetLength;
-
                 flag = true;
                 break;
 
@@ -60,47 +88,39 @@ int main(int argc, const char **argv) {
 
     // generate nickname
     std::string nickname = generateNick(option, alphabetLength, numberLength);
-    std::cout << "\nYour nickname is:\n" << nickname << '\n';
+    std::cout << "\nYour nickname is:\n" << nickname << "\n\n";
 
     return 0;
 }
 
-unsigned int getRandomNumber(void) {
-    std::random_device random;
-    std::mt19937 engine(random());
-    std::uniform_int_distribution<unsigned int> __rand(0, 100000000);
-
-    return (unsigned int)__rand(engine);
-}
-
 std::string generateNick(const int opt, const int al, const int nu) {
     std::string ret = "";
-
-    std::vector<char> number;
-    std::vector<char> alphabet;
-
-    for (char c = '0'; c <= '9'; c++) number.push_back(c);
-    for (char c = 'a'; c <= 'z'; c++) alphabet.push_back(c);
-
-    std::string alpha = "";
     std::string num = "";
+    std::string alpha = "";
+
+    const unsigned int firstAlpha = getRandom::getRandomNumber() % 2;
 
     for (int i = 0; i < al; i++) {
-        int rand_ = getRandomNumber() % (unsigned int)(alphabet.size());
-        alpha.push_back(alphabet[rand_]);
+        if (i % 2 == firstAlpha) {
+            char nw = getRandom::getRandomCons();
+            while (alpha.back() == nw) nw = getRandom::getRandomCons();
+            alpha.push_back(getRandom::getRandomCons());
+        } else {
+            char nw = getRandom::getRandomVowel();
+            while (alpha.back() == nw) nw = getRandom::getRandomVowel();
+            alpha.push_back(getRandom::getRandomVowel());
+        }
     }
 
     for (int i = 0; i < nu; i++) {
-        int rand_ = getRandomNumber() % (unsigned int)(number.size());
-        num.push_back(number[rand_]);
+        num.push_back(getRandom::getRandomDigit());
     }
 
-    if (opt == 1) {
-        ret = alpha + num;
-    } else if (opt == 2) {
-        ret = num + alpha;
-    } else if (opt == 3) {
-        ret = alpha;
+    switch (opt) {
+        case 1: ret = alpha + num; break;
+        case 2: ret = num + alpha; break;
+        case 3: ret = alpha; break;
+        default: return "Error!"; break;
     }
 
     return ret;

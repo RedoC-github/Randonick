@@ -12,7 +12,7 @@ $ git clone https://github.com/jhhan128/Randonick.git
 
 2. Go to cloned folder.
 ```
-$ cd Randonick
+$ cd ./Randonick
 ```
 
 3. Run.
@@ -23,3 +23,4 @@ ___
 ## TODO
 1. Make a **working** command-line Randonick.
 2. Create an online Randonick page with Github Pages.
+
